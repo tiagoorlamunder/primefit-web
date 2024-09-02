@@ -6,24 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrimeFit</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
 </head>
 
 <body>
     <header>
         <h1>Bem-vindo ao PrimeFit</h1>
-        <!-- Navegação -->
         <nav>
-            <ul>
-                <li><a href="#">Início</a></li>
+            <ul id="navLinks">
+                <li><a href="index.html">Início</a></li>
                 <li><a href="#">Planos</a></li>
                 <li><a href="#">Aulas Experimentais</a></li>
-                <li><a href="#">Minha Conta</a></li>
+                <li id="accountLink" class="hide"><a href="#">Minha Conta</a></li>
+                <li id="loginLink"><a href="login.html">Entrar</a></li>
+                <li id="registerLink"><a href="register.html">Registrar</a></li>
+                <li id="userWelcome" class="hide">Olá, <span id="usernameDisplay"></span>!</li>
+                <li id="logoutLink" class="hide"><a href="#">Sair</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <!-- Conteúdo principal -->
         <section id="home">
             <h2>Sobre nós</h2>
             <p>Informações sobre a academia.</p>
@@ -36,7 +38,7 @@
             <h2>Aulas Experimentais</h2>
             <!-- Agendamento de aulas -->
         </section>
-        <section id="account">
+        <section id="account" class="hide">
             <h2>Minha Conta</h2>
             <!-- Gerenciamento de conta -->
         </section>
