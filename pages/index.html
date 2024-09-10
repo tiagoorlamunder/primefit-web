@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrimeFit</title>
     <link rel="stylesheet" href="../styles/main.css">
-    <script src="../scripts/main.js" defer></script>    
+    <script src="../scripts/main.js" defer></script>
 </head>
-
 <body>
     <header>
-        <h1>Bem-vindo ao PrimeFit</h1>
-        <nav>
-            <ul id="navLinks">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="#">Planos</a></li>
-                <li><a href="#">Aulas Experimentais</a></li>
-                <li id="accountLink" class="hide"><a href="#">Minha Conta</a></li>
-                <li id="loginLink"><a href="login.html">Entrar</a></li>
-                <li id="registerLink"><a href="register.html">Registrar</a></li>
-                <li id="userWelcome" class="hide">Olá, <span id="usernameDisplay"></span>!</li>
-                <li id="logoutLink" class="hide"><a href="#">Sair</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <div class="header-title">
+                <h1>PrimeFit</h1>
+            </div>
+            <nav class="nav-main">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="#">Planos</a></li>
+                    <li><a href="#">Aulas Experimentais</a></li>
+                </ul>
+            </nav>
+            <div class="header-login">
+                <ul id="loginLinks">
+                    <li id="userWelcome" class="hide">Olá, <span id="usernameDisplay"></span>!</li>
+                    <li id="accountLink" class="hide"><a href="#">Minha Conta</a></li>
+                    <li id="logoutLink" class="hide"><a href="#">Sair</a></li>
+                    <li id="loginLink"><a href="login.html">Entrar</a></li>
+                    <li id="registerLink"><a href="register.html">Registrar</a></li>
+                </ul>
+            </div>
+        </div>
     </header>
     <main>
         <section id="home">
@@ -47,5 +53,4 @@
         <p>&copy; 2024 PrimeFit. Todos os direitos reservados.</p>
     </footer>
 </body>
-
 </html>
