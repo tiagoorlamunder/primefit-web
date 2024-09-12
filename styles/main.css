@@ -1,3 +1,4 @@
+/* Modo escuro */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,11 +6,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
     width: 100%;
     padding: 10px;
 }
@@ -29,7 +32,7 @@ header {
 
 .header-title h1 {
     margin: 0;
-    font-size: 1.5em; /* Tamanho do título ajustado */
+    font-size: 1.5em;
 }
 
 .nav-main {
@@ -49,7 +52,7 @@ header {
 }
 
 .nav-main ul li a {
-    color: #fff;
+    color: #e0e0e0;
     text-decoration: none;
 }
 
@@ -70,7 +73,7 @@ header {
 }
 
 .header-login ul li a {
-    color: #fff;
+    color: #e0e0e0;
     text-decoration: none;
 }
 
@@ -81,17 +84,18 @@ main {
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
     text-align: center;
     padding: 5px;
     width: 100%;
-    font-size: 0.9em; /* Tamanho da fonte reduzido */
-    position: static; /* Remove a fixação do rodapé */
+    font-size: 0.9em;
+    position: static;
 }
 
 .plan {
-    border: 1px solid #ccc;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
     padding: 15px;
     margin: 10px 0;
     border-radius: 5px;
@@ -109,6 +113,9 @@ form {
 input {
     padding: 10px;
     margin: 5px 0;
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #444;
 }
 
 button {
