@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="../styles/main.css">
     <script src="../scripts/register.js" defer></script>
 </head>
-
 <body>
     <header>
         <h1>Cadastro</h1>
@@ -16,11 +14,13 @@
     <main>
         <form id="registerForm">
             <input type="text" id="registerUsername" placeholder="Usuário" required>
+            <input type="email" id="registerEmail" placeholder="E-mail" required>
+            <input type="tel" id="registerPhone" placeholder="Telefone" required>
             <input type="password" id="registerPassword" placeholder="Senha" required>
+            <input type="password" id="registerConfirmPassword" placeholder="Confirmar Senha" required>
             <button type="submit">Cadastrar</button>
         </form>
         <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
     </main>
 </body>
-
 </html>
