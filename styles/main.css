@@ -1,8 +1,10 @@
-/* Modo escuro */
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,10 +13,10 @@ body {
 }
 
 header {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
+    background-color: #333;
+    color: #fff;
     width: 100%;
-    padding: 10px;
+    padding: 15px;
 }
 
 .header-content {
@@ -81,33 +83,52 @@ main {
     padding: 20px;
     width: 80%;
     max-width: 1200px;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 20px auto;
 }
 
 footer {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
+    background-color: #333;
+    color: #fff;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     width: 100%;
     font-size: 0.9em;
-    position: static;
+    margin-top: auto;
 }
 
 .plan {
-    background-color: #1e1e1e;
+    background-color: #2e2e2e;
     border: 1px solid #333;
     padding: 15px;
     margin: 10px 0;
     border-radius: 5px;
+    border-left: 5px solid #4CAF50;
 }
 
-.hide {
-    display: none;
+.plan h3 {
+    margin: 0;
+    color: #e0e0e0;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+.plan p {
+    margin: 5px 0;
+    color: #b0b0b0;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 input {
@@ -118,18 +139,50 @@ input {
     border: 1px solid #444;
 }
 
-button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
+.hide {
+    display: none;
 }
 
-button:hover {
-    background-color: #45a049;
+main {
+    background-color: #1c1c1c;
+}
+
+main > h2 {
+    color: #00FF00;
+    font-size: 1.8em;
+    text-align: center;
 }
 
 #userWelcome {
     color: #00FF00;
+}
+
+.plan {
+    background-color: #2e2e2e;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-left: 5px solid #4CAF50;
+}
+
+.plan h3 {
+    color: #e0e0e0;
+}
+
+.plan p {
+    color: #b0b0b0;
+}
+
+nav .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+nav .back-button:hover {
+    background-color: #0056b3;
 }
