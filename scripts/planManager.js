@@ -20,11 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para associar um plano ao usuário
     window.subscribeToPlan = function(planId) {
-        const userId = localStorage.getItem('userId');
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+            console.error('Token JWT não encontrado no localStorage');
+            alert('Erro: Token JWT não encontrado.');
+            return;
+        }
+
+        const decodedToken = jwt_decode(token);
+        const userId = decodedToken.userId;
 
         if (!userId) {
-            console.error('ID do usuário não encontrado no localStorage');
-            alert('Erro: ID do usuário não encontrado.');
+            console.error('ID do usuário não encontrado no token JWT');
+            alert('Erro: ID do usuário não encontrado no token.');
             return;
         }
 
