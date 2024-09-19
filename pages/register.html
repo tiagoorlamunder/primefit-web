@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar - PrimeFit</title>
+    <title>Registro - PrimeFit</title>
     <link rel="stylesheet" href="../styles/main.css">
     <script src="../scripts/register.js" defer></script>
 </head>
+
 <body>
-    <header>
-        <h1>Cadastro</h1>
+    <header class="header-register">
+        <h1>Registro</h1>
     </header>
-    <main>
-        <form id="registerForm">
-            <input type="text" id="registerUsername" placeholder="Usuário" required>
-            <input type="email" id="registerEmail" placeholder="E-mail" required>
-            <input type="tel" id="registerPhone" placeholder="Telefone" required>
-            <input type="password" id="registerPassword" placeholder="Senha" required>
-            <input type="password" id="registerConfirmPassword" placeholder="Confirmar Senha" required>
-            <button type="submit">Cadastrar</button>
-        </form>
-        <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+    <main class="main-register">
+        <div class="register-container">
+            <form id="registerForm" class="register-form">
+                <div class="input-group">
+                    <input type="text" id="registerUsername" placeholder="Usuário" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="registerEmail" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="registerPhone" placeholder="Telefone" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="registerPassword" placeholder="Senha" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="registerConfirmPassword" placeholder="Confirmar Senha" required>
+                </div>
+                <button type="submit" class="register-button">Registrar</button>
+            </form>
+            <p class="register-link">Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+        </div>
     </main>
 </body>
+
 </html>

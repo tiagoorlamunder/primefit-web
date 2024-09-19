@@ -6,20 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PrimeFit</title>
     <link rel="stylesheet" href="../styles/main.css">
-    <script src="../scripts/login.js" defer></script>    
+    <script src="../scripts/login.js" defer></script>
 </head>
 
 <body>
-    <header>
+    <header class="header-login">
         <h1>Login</h1>
     </header>
-    <main>
-        <form id="loginForm">
-            <input type="text" id="loginUsername" placeholder="Usuário" required>
-            <input type="password" id="loginPassword" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-        </form>
-        <p>Não tem uma conta? <a href="register.html">Registre-se aqui</a></p>
+    <main class="main-login">
+        <div class="form-container">
+            <form id="loginForm" class="form">
+                <div class="input-group">
+                    <input type="text" id="loginUsername" placeholder="Usuário" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPassword" placeholder="Senha" required>
+                </div>
+                <button type="submit" class="form-button">Entrar</button>
+            </form>
+            <p class="form-link">Não tem uma conta? <a href="register.html">Registre-se aqui</a></p>
+        </div>
     </main>
 </body>
 
