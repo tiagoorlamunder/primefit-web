@@ -1,32 +1,57 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Simulação de uma chamada à API para buscar os dados do usuário
-    fetch("/api/user-data")
-        .then(response => response.json())
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert('Você precisa estar logado para acessar esta página.');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    try {
+        // Decodifica o token JWT para obter o userId
+        const decodedToken = jwt_decode(token);
+        const userId = decodedToken.userId;
+
+        if (!userId) {
+            alert('ID do usuário não encontrado no token JWT.');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // Faz a requisição à API usando o userId
+        fetch(`http://localhost:5000/api/user/info?userId=${userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
-            const userWelcome = document.getElementById("userWelcome");
-            const userPlans = document.getElementById("userPlans");
-
-            // Exibe o nome do usuário
-            userWelcome.textContent = data.name || "Usuário";
-
-            // Verifica se o usuário possui planos
-            if (data.plans && data.plans.length > 0) {
-                data.plans.forEach(plan => {
-                    const planDiv = document.createElement("div");
-                    planDiv.classList.add("plan");
-                    planDiv.innerHTML = `
-                        <h3>Plano: ${plan.name}</h3>
-                        <p>Status: ${plan.status}</p>
-                        <p>Validade: ${plan.validity}</p>
-                    `;
-                    userPlans.appendChild(planDiv);
-                });
+            // Atualiza os elementos da página com as informações obtidas
+            document.getElementById('userName').textContent = data.name || 'Nome não disponível';
+            document.getElementById('userEmail').textContent = data.email || 'E-mail não disponível';
+            document.getElementById('userPhone').textContent = data.phone || 'Telefone não disponível';
+            
+            if (data.planName && data.planDescription) {
+                document.getElementById('userPlan').textContent = data.planName;
+                document.getElementById('planDescription').textContent = data.planDescription;
             } else {
-                userPlans.innerHTML = "<p>Você ainda não assinou nenhum plano.</p>";
+                document.getElementById('userPlan').textContent = 'Sem plano';
+                document.getElementById('planDescription').textContent = 'Descrição não disponível';
             }
         })
         .catch(error => {
-            console.error("Erro ao buscar dados do usuário:", error);
-            document.getElementById("userPlans").innerHTML = "<p>Erro ao carregar os dados.</p>";
+            console.error('Erro ao conectar com o servidor:', error);
+            alert('Erro ao conectar com o servidor: ' + error.message);
         });
+    } catch (error) {
+        console.error('Erro ao decodificar o token:', error);
+        alert('Erro ao decodificar o token.');
+        window.location.href = 'login.html';
+    }
 });

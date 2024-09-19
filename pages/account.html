@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Conta</title>
+    <title>Minha Conta - PrimeFit</title>
     <link rel="stylesheet" href="../styles/main.css"> <!-- CSS geral -->
     <link rel="stylesheet" href="../styles/account.css"> <!-- CSS específico para esta página -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js" defer></script>
+    <script src="../scripts/account.js" defer></script>
 </head>
+
 <body>
     <header>
         <div class="header-content">
-            <div class="header-back">
-                <a href="../pages/index.html" class="back-button">Voltar</a>
-            </div>
             <div class="header-title">
-                <h1>Minha Conta</h1>
+                <h1>PrimeFit</h1>
+            </div>
+            <nav class="nav-main">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="#">Planos</a></li>
+                    <li><a href="#">Aulas Experimentais</a></li>
+                </ul>
+            </nav>
+            <div class="header-login">
+                <ul id="loginLinks">
+                    <li id="userWelcome" class="hide">Olá, <span id="usernameDisplay"></span>!</li>
+                    <li id="accountLink" class="hide"><a href="account.html">Minha Conta</a></li>
+                    <li id="logoutLink" class="hide"><a href="#">Sair</a></li>
+                    <li id="loginLink"><a href="login.html">Entrar</a></li>
+                    <li id="registerLink"><a href="register.html">Registrar</a></li>
+                </ul>
             </div>
         </div>
     </header>
-
     <main>
-        <h2>Bem-vindo, <span id="userWelcome">Carregando...</span></h2>
-        <div id="userPlans">
-            <!-- Aqui serão exibidos os planos do usuário -->
-        </div>
+        <section id="account">
+            <h2>Minha Conta</h2>
+            <div id="userInfo">
+                <p><strong>Nome:</strong> <span id="userName">Carregando...</span></p>
+                <p><strong>E-mail:</strong> <span id="userEmail">Carregando...</span></p>
+                <p><strong>Telefone:</strong> <span id="userPhone">Carregando...</span></p>
+                <p><strong>Plano:</strong> <span id="userPlan">Carregando...</span></p>
+                <p><strong>Descrição do Plano:</strong> <span id="planDescription">Carregando...</span></p>
+            </div>
+        </section>
     </main>
-
     <footer>
         <p>&copy; 2024 PrimeFit. Todos os direitos reservados.</p>
     </footer>
-
-    <script src="account.js"></script> <!-- Arquivo JS separado -->
 </body>
+
 </html>
