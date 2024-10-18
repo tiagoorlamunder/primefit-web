@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Faz uma requisição GET para obter a lista de planos disponíveis
-    fetch('http://localhost:5000/api/plans')
+    fetch('https://primefit-api.onrender.com/api/plans')
         .then(response => response.json())
         .then(plans => {
             // Obtém o container onde os planos serão exibidos
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Faz uma requisição POST para se inscrever no plano selecionado
-        fetch('http://localhost:5000/api/plans/subscribe', {
+        fetch('https://primefit-api.onrender.com/api/plans/subscribe', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

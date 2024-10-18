@@ -9,7 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
     try {
         // Faz uma requisição POST para o endpoint de login com as credenciais fornecidas
-        const response = await fetch('http://localhost:5000/api/auth/login', {
+        const response = await fetch('https://primefit-api.onrender.com/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }, // Define o tipo de conteúdo como JSON
             body: JSON.stringify({ username, password }) // Converte as credenciais para JSON e inclui no corpo da requisição

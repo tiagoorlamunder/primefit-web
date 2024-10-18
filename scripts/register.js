@@ -18,7 +18,7 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
 
     try {
         // Faz uma requisição POST para o endpoint de registro com as informações fornecidas
-        const response = await fetch('http://localhost:5000/api/auth/register', {
+        const response = await fetch('https://primefit-api.onrender.com/api/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }, // Define o tipo de conteúdo como JSON
             body: JSON.stringify({ username, email, phone, password }) // Converte as informações para JSON e inclui no corpo da requisição

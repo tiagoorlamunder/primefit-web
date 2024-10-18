@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Faz uma requisição GET para obter informações do usuário com base no ID do usuário
-        fetch(`http://localhost:5000/api/user/info?userId=${userId}`, {
+        fetch(`https://primefit-api.onrender.com/api/user/info?userId=${userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}` // Inclui o token JWT no cabeçalho de autorização
