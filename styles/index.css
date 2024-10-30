@@ -2245,7 +2245,6 @@
   margin: 10px auto;
   display: block;
   float: none;
-  vertical-align: top;
 }
 
 .fr-view img.fr-dib.fr-fil {
@@ -2288,7 +2287,6 @@
   margin: 5px auto;
   display: block;
   float: none;
-  vertical-align: top;
 }
 
 .fr-view span.fr-img-caption.fr-dib.fr-fil {
@@ -2418,7 +2416,6 @@
   -webkit-opacity: 0.9;
   -moz-opacity: 0.9;
   opacity: 0.9;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   width: 100%;
   text-align: center;
 }
@@ -2457,7 +2454,6 @@ img.fr-view.fr-dib {
   margin: 5px auto;
   display: block;
   float: none;
-  vertical-align: top;
 }
 
 img.fr-view.fr-dib.fr-fil {
@@ -2500,7 +2496,6 @@ span.fr-img-caption.fr-view.fr-dib {
   margin: 5px auto;
   display: block;
   float: none;
-  vertical-align: top;
 }
 
 span.fr-img-caption.fr-view.fr-dib.fr-fil {
@@ -2692,9 +2687,7 @@ select {
 button,
 html [type="button"],
 [type="reset"],
-[type="submit"] {
-  -webkit-appearance: button;
-}
+[type="submit"]
 
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -2750,7 +2743,6 @@ textarea {
 }
 
 [type="search"] {
-  -webkit-appearance: textfield;
   outline-offset: -2px;
 }
 
@@ -5700,7 +5692,6 @@ a {
 }
 
 .u-form-number input[type="range"] {
-  -webkit-appearance: none;
   padding-left: 0;
   padding-right: 0;
   border: 0;
@@ -11504,7 +11495,6 @@ ul.u-text li:last-child {
 .u-video-poster {
   object-fit: cover;
   display: block;
-  vertical-align: middle;
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -21177,7 +21167,6 @@ div.u-video,
 
 .u-player-progress {
   display: flex;
-  postion: relative;
   height: 4px;
   border-radius: 25px;
   margin: 0 5px;
@@ -25868,8 +25857,6 @@ aside .u-categories.u-categories-vertical ul {
   line-height: 1;
 }
 
-.u-categories.u-categories-vertical {}
-
 .u-categories.u-categories-vertical ul {
   display: table;
 }
@@ -26027,7 +26014,6 @@ aside .u-categories.u-categories-vertical ul {
   touch-action: none;
   z-index: 1500;
   -webkit-text-size-adjust: 100%;
-  -webkit-backface-visibility: hidden;
   outline: none;
 }
 
@@ -26076,7 +26062,6 @@ aside .u-categories.u-categories-vertical ul {
   background: #000;
   opacity: 0;
   transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
   will-change: opacity;
 }
 
@@ -26125,11 +26110,6 @@ aside .u-categories.u-categories-vertical ul {
   transition: none;
 }
 
-.pswp__container,
-.pswp__zoom-wrap {
-  -webkit-backface-visibility: hidden;
-}
-
 .pswp__item {
   position: absolute;
   left: 0;
@@ -26145,10 +26125,6 @@ aside .u-categories.u-categories-vertical ul {
   height: auto;
   top: 0;
   left: 0;
-}
-
-.pswp__img--placeholder {
-  -webkit-backface-visibility: hidden;
 }
 
 .pswp__img--placeholder--blank {
@@ -26228,7 +26204,6 @@ aside .u-categories.u-categories-vertical ul {
   background: none;
   cursor: pointer;
   overflow: visible;
-  -webkit-appearance: none;
   display: block;
   border: 0;
   padding: 0;
@@ -26379,7 +26354,6 @@ aside .u-categories.u-categories-vertical ul {
   z-index: 1600;
   opacity: 0;
   transition: opacity 0.25s ease-out;
-  -webkit-backface-visibility: hidden;
   will-change: opacity;
 }
 
@@ -26399,7 +26373,6 @@ aside .u-categories.u-categories-vertical ul {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   transform: translateY(6px);
   transition: transform 0.25s;
-  -webkit-backface-visibility: hidden;
   will-change: transform;
 }
 
@@ -26643,7 +26616,6 @@ a.pswp__share--download:hover {
 .pswp__top-bar,
 .pswp--has_mouse .pswp__button--arrow--left,
 .pswp--has_mouse .pswp__button--arrow--right {
-  -webkit-backface-visibility: hidden;
   will-change: opacity;
   transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
 }
@@ -32510,16 +32482,6 @@ span.product-remove:after {
 .u-field-input[class*="u-hover-"][type="radio"]:checked,
 .u-field-input[class*="u-border-"][type="radio"]:checked {
   background-image: var(--radio-checked-icon);
-}
-
-.u-field-input.u-appearance-auto[type="checkbox"] {
-  -webkit-appearance: checkbox;
-  -moz-appearance: checkbox;
-}
-
-.u-field-input.u-appearance-auto[type="radio"] {
-  -webkit-appearance: radio;
-  -moz-appearance: radio;
 }
 
 .u-field-input.u-appearance-auto {
@@ -52566,7 +52528,6 @@ ol {
 
 .u-input {
   border-width: 1px;
-  borders: top right bottom left;
 }
 
 @media (max-width: 1199px) {
