@@ -34,20 +34,40 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(plans => {
             // Obtém o container onde os planos serão exibidos
             const plansContainer = document.getElementById('plans');
+            // plansContainer.innerHTML = ''; // Limpa o conteúdo anterior
+
             plans.forEach(plan => {
-                // Cria um elemento para cada plano e adiciona ao container
+                // Cria o elemento de plano com a estrutura HTML desejada
                 const planElement = document.createElement('div');
-                planElement.classList.add('plan');
+                planElement.classList.add('u-align-center', 'u-container-align-center', 'u-container-style', 'u-list-item', 'u-repeater-item', 'u-shape-rectangle', 'u-white');
+                planElement.setAttribute('data-animation-name', 'customAnimationIn');
+                planElement.setAttribute('data-animation-duration', '1750');
+                planElement.setAttribute('data-animation-delay', '0');
+
                 planElement.innerHTML = `
-                    <h3>${plan.name}</h3>
-                    <p>${plan.description}</p>
-                    <p>Preço: R$${plan.price.toFixed(2)}</p>
-                    <button onclick="subscribeToPlan('${plan._id}')">Escolher Plano</button>
-                `;
+                <div class="u-container-layout u-similar-container u-valign-top">
+                    <div class="u-align-center u-container-align-center u-container-style u-expanded-width u-group u-palette-2-base">
+                        <div class="u-container-layout u-valign-middle">
+                            <h4 class="u-align-center u-text u-text-default">${plan.name}</h4>
+                        </div>
+                    </div>
+                    <p class="u-text">${plan.description}</p>
+                    <a href="#" class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-border-palette-2-base u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-style u-none u-radius-0 u-text-active-palette-3-base u-text-body-color u-text-hover-palette-3-base">
+                        Assinar plano
+                    </a>
+                </div>
+
+
+
+                
+            `;
+
+                // Adiciona o elemento ao container
                 plansContainer.appendChild(planElement);
             });
         })
         .catch(error => console.error('Erro ao carregar planos:', error));
+
 
     // Adiciona um ouvinte de evento ao link de logout
     logoutLink.addEventListener('click', () => {
