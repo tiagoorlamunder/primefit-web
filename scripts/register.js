@@ -12,8 +12,13 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
 
     // Verifica se as senhas fornecidas coincidem
     if (password !== confirmPassword) {
-        alert('As senhas não coincidem.'); // Exibe um alerta se as senhas não coincidirem
-        return; // Interrompe a execução da função
+        return Swal.fire({
+            title: 'Atenção!',
+            text: 'As senhas não coincidem.',
+            icon: 'warning', // Ícone de aviso
+            confirmButtonText: 'OK' // Botão de confirmação
+        });
+        
     }
 
     try {
@@ -23,19 +28,40 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
             headers: { 'Content-Type': 'application/json' }, // Define o tipo de conteúdo como JSON
             body: JSON.stringify({ username, email, phone, password }) // Converte as informações para JSON e inclui no corpo da requisição
         });
-
+    
         // Verifica se a resposta foi bem-sucedida
         if (response.ok) {
-            alert('Cadastro realizado com sucesso!'); // Informa ao usuário que o registro foi bem-sucedido
-            // Redireciona o usuário para a página de login
+            // Exibe o SweetAlert de sucesso
+            await Swal.fire({
+                title: 'Atenção!',
+                text: 'Cadastro realizado com sucesso!',
+                icon: 'success', // Ícone de sucesso
+                confirmButtonText: 'OK' // Botão de confirmação
+            });
+            // Redireciona o usuário para a página de login após o clique no botão "OK"
             window.location.href = 'login.html';
         } else {
             // Obtém e exibe a mensagem de erro retornada pelo servidor
             const errorText = await response.text();
-            alert(`Erro: ${errorText}`);
+    
+            // Exibe o SweetAlert de erro
+            await Swal.fire({
+                title: 'Atenção!',
+                text: `Erro: ${errorText}`,
+                icon: 'error', // Ícone de erro
+                confirmButtonText: 'OK' // Botão de confirmação
+            });
         }
     } catch (error) {
         // Captura e exibe um erro se a requisição falhar
-        alert('Erro ao conectar com o servidor.');
+        console.log('Erro ao conectar com o servidor', error);
+    
+        // Exibe o SweetAlert de falha na conexão
+        await Swal.fire({
+            title: 'Erro ao conectar com o servidor.',
+            text: `Erro: ${error.message}`, // Mostra a mensagem de erro
+            icon: 'error', // Ícone de erro
+            confirmButtonText: 'OK' // Botão de confirmação
+        });
     }
-});
+});    

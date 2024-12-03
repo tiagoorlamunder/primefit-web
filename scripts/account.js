@@ -5,7 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Verifica se o token existe; se não, redireciona para a página de login
     if (!token) {
-        alert('Você precisa estar logado para acessar esta página.');
+        Swal.fire({
+            title: 'Atenção!',
+            text: 'Você precisa estar logado para acessar esta página.',
+            icon: 'warning', // Ícone de aviso
+            confirmButtonText: 'OK' // Botão de confirmação
+        });
+
         window.location.href = 'login.html';
         return;
     }
@@ -17,7 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Verifica se o ID do usuário está presente no token; se não, redireciona para a página de login
         if (!userId) {
-            alert('ID do usuário não encontrado no token JWT.');
+
+            Swal.fire({
+                title: 'Atenção!',
+                text: 'ID do usuário não encontrado no token JWT.',
+                icon: 'warning', // Ícone de aviso
+                confirmButtonText: 'OK' // Botão de confirmação
+            });
+
             window.location.href = 'login.html';
             return;
         }
@@ -54,7 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 // Exibe uma mensagem de erro se houver problemas ao conectar com o servidor
                 console.error('Erro ao conectar com o servidor:', error);
-                alert('Erro ao conectar com o servidor: ' + error.message);
+
+                Swal.fire({
+                    title: 'Atenção!',
+                    text: 'Erro ao conectar com o servidor: ',
+                    icon: 'warning', // Ícone de aviso
+                    confirmButtonText: 'OK' // Botão de confirmação
+                });
             });
     } catch (error) {
         // Exibe uma mensagem de erro se houver problemas ao decodificar o token
