@@ -1,6 +1,24 @@
-// Adiciona um ouvinte de evento para quando o conteúdo do DOM estiver completamente carregado
-document.addEventListener('DOMContentLoaded', () => {
-    // Obtém o token JWT armazenado no localStorage
+document.addEventListener('DOMContentLoaded', function() {
+    // Função para decodificar o JWT
+    function parseJWT(token) {
+        // Divide o JWT em suas 3 partes (header, payload e signature)
+        const [header, payload, signature] = token.split('.');
+
+        // Decodifica as partes base64 URL-encoded
+        const decodedHeader = JSON.parse(atob(header));
+        const decodedPayload = JSON.parse(atob(payload));
+
+        // Exibe as partes decodificadas
+        console.log("Header:", decodedHeader);
+        console.log("Payload:", decodedPayload);
+        
+        return {
+            header: decodedHeader,
+            payload: decodedPayload,
+            signature: signature
+        };
+    }
+
     const token = localStorage.getItem('token');
 
     // Verifica se o token existe; se não, redireciona para a página de login
@@ -11,74 +29,145 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'warning', // Ícone de aviso
             confirmButtonText: 'OK' // Botão de confirmação
         });
-
         window.location.href = 'login.html';
         return;
     }
 
+    // Decodifica o token JWT para obter o ID do usuário
+    let userId;
     try {
-        // Decodifica o token JWT para obter o ID do usuário
         const decodedToken = jwt_decode(token);
-        const userId = decodedToken.userId;
-
-        // Verifica se o ID do usuário está presente no token; se não, redireciona para a página de login
+        userId = decodedToken.userId;
         if (!userId) {
-
             Swal.fire({
                 title: 'Atenção!',
                 text: 'ID do usuário não encontrado no token JWT.',
-                icon: 'warning', // Ícone de aviso
-                confirmButtonText: 'OK' // Botão de confirmação
+                icon: 'warning',
+                confirmButtonText: 'OK'
             });
-
             window.location.href = 'login.html';
             return;
         }
-
-        // Faz uma requisição GET para obter informações do usuário com base no ID do usuário
-        fetch(`https://primefit-api.onrender.com/api/user/info?userId=${userId}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}` // Inclui o token JWT no cabeçalho de autorização
-            }
-        })
-            .then(response => {
-                // Verifica se a resposta HTTP foi bem-sucedida; caso contrário, lança um erro
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP: ${response.status}`);
-                }
-                return response.json(); // Converte a resposta em JSON
-            })
-            .then(data => {
-                // Atualiza o conteúdo da página com as informações do usuário obtidas
-                document.getElementById('userName').textContent = data.name || 'Nome não disponível';
-                document.getElementById('userEmail').textContent = data.email || 'E-mail não disponível';
-                document.getElementById('userPhone').textContent = data.phone || 'Telefone não disponível';
-
-                // Atualiza o plano do usuário, se disponível
-                if (data.planName && data.planDescription) {
-                    document.getElementById('userPlan').textContent = data.planName;
-                    document.getElementById('planDescription').textContent = data.planDescription;
-                } else {
-                    document.getElementById('userPlan').textContent = 'Sem plano';
-                    document.getElementById('planDescription').textContent = 'Descrição não disponível';
-                }
-            })
-            .catch(error => {
-                // Exibe uma mensagem de erro se houver problemas ao conectar com o servidor
-                console.error('Erro ao conectar com o servidor:', error);
-
-                Swal.fire({
-                    title: 'Atenção!',
-                    text: 'Erro ao conectar com o servidor: ',
-                    icon: 'warning', // Ícone de aviso
-                    confirmButtonText: 'OK' // Botão de confirmação
-                });
-            });
     } catch (error) {
-        // Exibe uma mensagem de erro se houver problemas ao decodificar o token
         console.error('Erro ao decodificar o token:', error);
         alert('Erro ao decodificar o token.');
-        window.location.href = 'login.html'; // Redireciona para a página de login
+        window.location.href = 'login.html';
+        return;
     }
+
+    // Carregar dados do usuário
+    fetchUserData(userId);
+
+    // Adicionar botão de edição
+    const userInfo = document.getElementById('userInfo');
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Editar';
+    editButton.addEventListener('click', toggleEditMode);
+    userInfo.appendChild(editButton);
+
+    function getToken() {
+        return localStorage.getItem('token');
+    }
+
+    function fetchUserData(userId) {
+        const token = getToken();
+        if (!token) {
+            console.error('Token não encontrado');
+            return;
+        }
+
+        fetch(`https://primefit-api.onrender.com/api/user/info?userId=${userId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Falha na autenticação ou erro na API');
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayUserData(data);
+        })
+        .catch(error => console.error('Erro ao carregar dados do usuário:', error));
+    }
+
+    function displayUserData(userData) {
+        localStorage.setItem('name', userData.name);
+        localStorage.setItem('permission', userData.permission);
+        document.getElementById('userName').textContent = userData.name;
+        document.getElementById('userEmail').textContent = userData.email;
+        document.getElementById('userPhone').textContent = userData.phone;
+        document.getElementById('userPlan').textContent = userData.planName;
+        document.getElementById('planDescription').textContent = userData.planDescription;
+    }
+
+    function toggleEditMode() {
+        const isEditing = userInfo.classList.toggle('editing');
+        if (isEditing) {
+            convertToEditableFields();
+            editButton.textContent = 'Salvar';
+        } else {
+            saveUserData();
+            convertToReadOnlyFields();
+            editButton.textContent = 'Editar';
+        }
+    }
+
+    function convertToEditableFields() {
+        const fields = ['userName', 'userEmail', 'userPhone'];
+        fields.forEach(field => {
+            const span = document.getElementById(field);
+            const input = document.createElement('input');
+            input.type = field === 'userEmail' ? 'email' : 'text';
+            input.value = span.textContent;
+            span.parentNode.replaceChild(input, span);
+        });
+    }
+
+    function convertToReadOnlyFields() {
+        const inputs = userInfo.querySelectorAll('input');
+        inputs.forEach(input => {
+            const span = document.createElement('span');
+            span.id = input.parentNode.firstChild.textContent.toLowerCase().replace(':', '').trim();
+            span.textContent = input.value;
+            input.parentNode.replaceChild(span, input);
+        });
+    }
+
+    function saveUserData() {
+        const userData = {
+            username: userInfo.querySelector('input[type="text"]').value,
+            email: userInfo.querySelector('input[type="email"]').value,
+            phone: userInfo.querySelectorAll('input[type="text"]')[1].value
+        };
+
+        const token = getToken();
+        if (!token) {
+            console.error('Token não encontrado');
+            return;
+        }
+        const id = parseJWT(token).payload.userId;
+        fetch(`https://primefit-api.onrender.com/api/user/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Falha na autenticação ou erro na API');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dados atualizados com sucesso:', data);
+            displayUserData(data);
+        })
+        .catch(error => console.error('Erro ao atualizar dados:', error));
+    }
+
 });

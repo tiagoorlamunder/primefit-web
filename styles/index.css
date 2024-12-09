@@ -3529,6 +3529,18 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
+.u-logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  display: inline-block;
+}
+
+.u-logo:hover .u-logo-text {
+  color: #000;
+}
+
 .u-image.u-logo {
   display: table;
   white-space: nowrap;
@@ -53099,3 +53111,7 @@ html {
 .hide {
   display: none;
 }
+
+
+
+
