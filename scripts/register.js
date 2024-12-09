@@ -63,4 +63,4 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
             confirmButtonText: 'OK' // Botão de confirmação
         });
     }
-});    
+});
