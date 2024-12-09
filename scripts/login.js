@@ -29,7 +29,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             localStorage.setItem('token', data.token);
             localStorage.setItem('username', username);
             // Redireciona o usuário para a página principal
-            window.location.href = 'account.html';
+            window.location.href = 'index.html';
         } else {
             // Exibe uma mensagem de erro, se houver
             Swal.fire({
