@@ -62,13 +62,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInfo = document.getElementById('userInfo');
     const editButton = document.createElement('button');
     editButton.textContent = 'Editar';
+    // Adiciona um ouvinte de evento ao botão de edição para alternar entre os modos de visualização e edição
     editButton.addEventListener('click', toggleEditMode);
     userInfo.appendChild(editButton);
 
+    // Função para obter o token do localStorage
     function getToken() {
         return localStorage.getItem('token');
     }
 
+    // Função para buscar os dados do usuário
     function fetchUserData(userId) {
         const token = getToken();
         if (!token) {
@@ -76,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // Realiza uma requisição GET para obter as informações do usuário
         fetch(`https://primefit-api.onrender.com/api/user/info?userId=${userId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -93,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Erro ao carregar dados do usuário:', error));
     }
 
+    // Função para exibir os dados do usuário na página
     function displayUserData(userData) {
         localStorage.setItem('name', userData.name);
         localStorage.setItem('permission', userData.permission);
@@ -103,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('planDescription').textContent = userData.planDescription;
     }
 
+    // Função para alternar entre o modo de visualização e o modo de edição
     function toggleEditMode() {
         const isEditing = userInfo.classList.toggle('editing');
         if (isEditing) {
@@ -115,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Converte os campos de exibição para campos de edição
     function convertToEditableFields() {
         const fields = ['userName', 'userEmail', 'userPhone'];
         fields.forEach(field => {
@@ -126,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Converte os campos de edição de volta para campos somente leitura
     function convertToReadOnlyFields() {
         const inputs = userInfo.querySelectorAll('input');
         inputs.forEach(input => {
@@ -136,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Função para salvar os dados do usuário
     function saveUserData() {
         const userData = {
             username: userInfo.querySelector('input[type="text"]').value,
@@ -149,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         const id = parseJWT(token).payload.userId;
+        // Faz uma requisição PUT para atualizar os dados do usuário
         fetch(`https://primefit-api.onrender.com/api/user/${id}`, {
             method: 'PUT',
             headers: {

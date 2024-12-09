@@ -1,3 +1,4 @@
+// Aplica efeitos de movimento aos elementos conforme o usuário rola o mouse na página
 !(function (t) {
     function e(i) {
         if (n[i]) return n[i].exports;
