@@ -1,4 +1,3 @@
-// Adiciona um ouvinte de evento para o formulário de registro quando ele é submetido
 document.getElementById('registerForm').addEventListener('submit', async (event) => {
     // Impede o comportamento padrão de envio do formulário
     event.preventDefault();

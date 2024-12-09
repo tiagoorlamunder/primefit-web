@@ -1,4 +1,3 @@
-// Adiciona um ouvinte de evento para quando o conteúdo do DOM estiver completamente carregado
 document.addEventListener('DOMContentLoaded', () => {
     // Obtém referências aos elementos da página
     function parseJWT(token) {
