@@ -71,22 +71,6 @@ header {
     text-decoration: none;
 }
 
-.header-login ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-}
-
-.header-login ul li {
-    margin-left: 15px;
-}
-
-.header-login ul li a {
-    color: #e0e0e0;
-    text-decoration: none;
-}
-
 main {
     flex: 1;
     padding: 20px;
@@ -162,20 +146,6 @@ main>h2 {
     color: #00FF00;
 }
 
-nav .back-button {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #007bff;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1em;
-}
-
-nav .back-button:hover {
-    background-color: #0056b3;
-}
-
 .form-container {
     background-color: #2e2e2e;
     border-radius: 8px;
@@ -233,11 +203,6 @@ nav .back-button:hover {
     text-decoration: underline;
 }
 
-.header-login {
-    background-color: #333;
-    color: #fff;
-}
-
 .main-login {
     display: flex;
     justify-content: center;
@@ -245,11 +210,6 @@ nav .back-button:hover {
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-}
-
-.header-register {
-    background-color: #333;
-    color: #fff;
 }
 
 .main-register {
