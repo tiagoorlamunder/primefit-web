@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Inscrição realizada!',
-                    text: message,
+                    text: "Assinatura realizada com sucesso!",
                     background: '#2a2a2a',
                     color: '#ffffff'
                 });
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Inscrição realizada!',
-                    text: message,
+                    text: "Assinatura realizada com sucesso!",
                 });
             })
             .catch(error => {
