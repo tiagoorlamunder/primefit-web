@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funções para usuários
     async function loadUsers() {
         try {
-            const response = await authenticatedFetch('https://primefit-api.onrender.com/api/user/');
+            const response = await authenticatedFetch('http://127.0.0.1:5000/api/user/');
             if (!response.ok) {
                 throw new Error('Não foi possível carregar os usuários');
             }
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.viewUser = async function (userId) {
         try {
-            const response = await authenticatedFetch(`https://primefit-api.onrender.com/api/user/info?userId=${userId}`);
+            const response = await authenticatedFetch(`http://127.0.0.1:5000/api/user/info?userId=${userId}`);
             if (!response.ok) {
                 throw new Error('Não foi possível obter as informações do usuário');
             }
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let response;
             if (userId) {
                 // Atualizar usuário existente
-                response = await authenticatedFetch(`https://primefit-api.onrender.com/api/user/${userId}`, {
+                response = await authenticatedFetch(`http://127.0.0.1:5000/api/user/${userId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             } else {
                 // Criar novo usuário
-                response = await authenticatedFetch('https://primefit-api.onrender.com/api/auth/register', {
+                response = await authenticatedFetch('http://127.0.0.1:5000/api/auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (result.isConfirmed) {
             try {
-                const response = await authenticatedFetch(`https://primefit-api.onrender.com/api/user/${userId}`, {
+                const response = await authenticatedFetch(`http://127.0.0.1:5000/api/user/${userId}`, {
                     method: 'DELETE',
                 });
 
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funções para planos
     async function loadPlans() {
         try {
-            const response = await authenticatedFetch('https://primefit-api.onrender.com/api/plans/');
+            const response = await authenticatedFetch('http://127.0.0.1:5000/api/plans/');
             if (!response.ok) {
                 throw new Error('Não foi possível carregar os planos');
             }
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.viewPlan = async function (planId) {
         try {
-            const response = await authenticatedFetch(`https://primefit-api.onrender.com/api/plans/${planId}`);
+            const response = await authenticatedFetch(`http://127.0.0.1:5000/api/plans/${planId}`);
             if (!response.ok) {
                 throw new Error('Não foi possível obter as informações do plano');
             }
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let response;
             if (planId) {
                 // Atualizar plano existente
-                response = await authenticatedFetch(`https://primefit-api.onrender.com/api/plans/${planId}`, {
+                response = await authenticatedFetch(`http://127.0.0.1:5000/api/plans/${planId}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             } else {
                 // Criar novo plano
-                response = await authenticatedFetch('https://primefit-api.onrender.com/api/plans/', {
+                response = await authenticatedFetch('http://127.0.0.1:5000/api/plans/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (result.isConfirmed) {
             try {
-                const response = await authenticatedFetch(`https://primefit-api.onrender.com/api/plans/${planId}`, {
+                const response = await authenticatedFetch(`http://127.0.0.1:5000/api/plans/${planId}`, {
                     method: 'DELETE',
                 });
 

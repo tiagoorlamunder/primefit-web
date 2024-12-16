@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Realiza uma requisição GET para obter as informações do usuário
-        fetch(`https://primefit-api.onrender.com/api/user/info?userId=${userId}`, {
+        fetch(`http://127.0.0.1:5000/api/user/info?userId=${userId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const id = parseJWT(token).payload.userId;
         // Faz uma requisição PUT para atualizar os dados do usuário
-        fetch(`https://primefit-api.onrender.com/api/user/${id}`, {
+        fetch(`http://127.0.0.1:5000/api/user/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

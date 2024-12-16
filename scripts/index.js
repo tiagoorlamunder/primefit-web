@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const usernameDisplay = document.getElementById('usernameDisplay');
     
         function loadPlans() {
-            fetch('https://primefit-api.onrender.com/api/plans/')
+            fetch('http://127.0.0.1:5000/api/plans/')
                 .then(response => response.json())
                 .then(plans => {
                     const plansContainer = document.getElementById('plans');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                 </div>
                                 <p class="u-text u-text-3">${plan.description}</p>
-                                <a href="#" onclick="confirmSubscription('${plan._id}')"
+                                <a href="#" onclick="confirmSubscription('${plan._id}', '${plan.price}')"
                                     class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-border-palette-2-base u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-style u-none u-radius-0 u-text-active-palette-3-base u-text-body-color u-text-hover-palette-3-base u-top-left-radius-0 u-top-right-radius-0 u-btn-1">Assinar plano</a>
                             </div>
                         `;
@@ -103,15 +103,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     
-        window.confirmSubscription = function(planId) {
+        window.confirmSubscription = function(planId, planPrice) {
             Swal.fire({
-                title: 'Confirmar assinatura',
-                text: "Você tem certeza que deseja assinar este plano?",
-                icon: 'question',
+                title: 'Confirmação de pagamento',
+                html: `
+                    <p>Valor do plano: <strong>R$ ${planPrice}</strong></p>
+                    <p>Chave PIX: <strong>12.345.678/0001-90</strong></p>
+                    <p>Realize o pagamento utilizando a chave acima e clique em confirmar para concluir a assinatura.</p>
+                `,
+                icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, assinar!',
+                confirmButtonText: 'Confirmar pagamento',
                 cancelButtonText: 'Cancelar',
                 background: '#2a2a2a',
                 color: '#ffffff'
@@ -120,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     subscribeToPlan(planId);
                 }
             });
-        }
+        }        
     
         window.subscribeToPlan = function(planId) {
             const token = localStorage.getItem('token');
@@ -136,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
     
-            fetch('https://primefit-api.onrender.com/api/plans/subscribe', {
+            fetch('http://127.0.0.1:5000/api/plans/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -241,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Faz uma requisição POST para se inscrever no plano selecionado
-        fetch('https://primefit-api.onrender.com/api/plans/subscribe', {
+        fetch('http://127.0.0.1:5000/api/plans/subscribe', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
