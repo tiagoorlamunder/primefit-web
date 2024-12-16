@@ -1,10 +1,17 @@
+
 # RFC - PrimeFit - Sistema de Gestão de Planos de Assinatura em Academias
 
 ## Visão Geral
 
-O projeto **PrimeFit** é um sistema completo para a gestão de planos de assinatura em academias. O sistema abrange tanto o **front-end**, acessível pelo usuário final, quanto o **back-end** (API), responsável pelo processamento de dados e comunicação com o banco de dados. O objetivo deste sistema é permitir que academias gerenciem suas assinaturas, planos de pagamento, usuários e informações relacionadas de forma eficiente e segura.
+O **PrimeFit** é um sistema completo para a gestão de planos de assinatura em academias. Ele foi projetado para fornecer uma solução eficiente e segura para academias de diversos portes, permitindo a gestão de usuários, planos de assinatura e outros dados relevantes, como pagamentos e status de inscrição.
 
-Este documento descreve o funcionamento técnico detalhado do projeto, suas funcionalidades, arquitetura e fluxos de dados. Ele abrange tanto o back-end (API) quanto o front-end, detalhando os componentes, casos de uso e as interações entre o cliente e o servidor.
+Este documento descreve o funcionamento técnico detalhado do projeto, com a definição de requisitos, funcionalidades, fluxos de dados e arquitetura do sistema. O **PrimeFit** é composto por duas partes principais: o **front-end**, acessível pelos usuários finais, e o **back-end** (API), que realiza o processamento dos dados e a comunicação com o banco de dados.
+
+Além disso, o sistema foi desenvolvido com foco em:
+
+- **Escalabilidade**: Suporta o aumento do número de usuários e planos de forma eficiente.
+- **Segurança**: Utiliza autenticação baseada em **JWT** e criptografia para proteger dados sensíveis.
+- **Usabilidade**: Interface intuitiva para interação dos usuários com os planos e dados pessoais.
 
 ## Estrutura do Projeto
 
@@ -144,6 +151,67 @@ O sistema utiliza **MongoDB** como banco de dados para armazenar informações s
 3. O usuário submete os dados alterados, e uma requisição **PUT /api/user/update** é feita com os novos dados.
 4. O sistema valida e atualiza os dados no banco de dados.
 
+## Requisitos do Sistema
+
+### Requisitos Funcionais
+
+- O sistema deve permitir o cadastro de novos usuários com nome, email e senha.
+- O sistema deve gerar um token JWT ao realizar o login, que será utilizado para autenticação nas rotas protegidas.
+- O sistema deve permitir que os usuários visualizem suas informações pessoais e planos de assinatura após o login.
+- O sistema deve permitir que os administradores gerenciem os planos de assinatura (criação, edição, remoção).
+- O sistema deve validar dados de entrada, como email e senha, para garantir a integridade das informações armazenadas.
+
+### Requisitos Não Funcionais
+
+- **Desempenho**: O sistema deve ser capaz de lidar com até 10.000 usuários simultâneos sem degradação significativa de performance.
+- **Segurança**: Os dados sensíveis, como senhas de usuários, devem ser armazenados de forma segura utilizando criptografia.
+- **Escalabilidade**: O sistema deve ser facilmente escalável para suportar o crescimento da base de usuários e planos de assinatura.
+
+### Requisitos de Segurança
+
+- O sistema deve criptografar as senhas dos usuários utilizando o algoritmo **bcrypt**.
+- O sistema deve utilizar **tokens JWT** para autenticação de usuários, garantindo que apenas usuários autenticados possam acessar rotas protegidas.
+- O sistema deve ter uma camada de proteção contra ataques de **Cross-Site Scripting (XSS)** e **SQL Injection**.
+
+### Diagramas UML
+
+Abaixo estão os diagramas UML representando as principais entidades do sistema e seus relacionamentos.
+
+#### Diagrama de Classes
+
+```uml
+classDiagram
+    class User {
+        +String name
+        +String email
+        +String passwordHash
+        +String planId
+    }
+    class Plan {
+        +String planName
+        +Double price
+        +Integer durationMonths
+    }
+    User --> Plan : "Assina"
+```
+
+#### Diagrama de Sequência (Login de Usuário)
+
+```uml
+sequenceDiagram
+    participant U as Usuário
+    participant FE as Front-end
+    participant BE as Back-end
+    participant DB as Banco de Dados
+
+    U->>FE: Preenche email e senha
+    FE->>BE: Envia dados para login
+    BE->>DB: Valida credenciais
+    DB-->>BE: Resposta (credenciais válidas)
+    BE-->>FE: Retorna token JWT
+    FE-->>U: Exibe painel com dados do usuário
+```
+
 ## Detalhes de Segurança e CI/CD
 
 ### Autenticação e Autorização
@@ -163,3 +231,4 @@ O projeto é configurado com uma pipeline **CI/CD** utilizando **GitHub Actions*
 Este projeto foi desenvolvido com o objetivo de fornecer uma solução eficiente para gestão de planos de assinatura em academias. Ele combina um front-end interativo com um back-end robusto, oferecendo um sistema escalável e seguro para administrar usuários e planos.
 
 A arquitetura proposta, com a utilização de **MongoDB**, **Node.js** e **Express.js**, garante desempenho e flexibilidade para futuras extensões e manutenção.
+
